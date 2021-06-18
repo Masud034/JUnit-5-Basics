@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculatorTest {
 
     @Test
-    @DisplayName("Add two numbers")
+    @DisplayName("Should add two numbers")
     void add() {
         assertAll(
                 () -> assertEquals(4,Calculator.add(2, 2)),
@@ -17,13 +17,13 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("Subtract two numbers")
+    @DisplayName("Should subtract two numbers")
     void subtract() {
         assertEquals(4, Calculator.subtract(5.5, 1.5));
     }
 
     @Test
-    @DisplayName("Multiply two numbers")
+    @DisplayName("Should multiply two numbers")
     void multiply() {
         assertAll(
                 () -> assertEquals(8,Calculator.multiply(4, 2)),
@@ -33,12 +33,13 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("Divide two numbers")
+    @DisplayName("Should divide two numbers")
     void divide() {
         assertAll(
                 () -> assertEquals(2.5,Calculator.divide(5, 2)),
                 () -> assertEquals(4,Calculator.divide(8, 2)),
-                () -> assertEquals(Double.POSITIVE_INFINITY,Calculator.divide(8,0))
+                () -> assertEquals(Double.POSITIVE_INFINITY,Calculator.divide(8,0)),
+                () -> assertThrows(ArithmeticException.class, ()-> Calculator.arithmeticExceptionCheck(5, 0))
         );
     }
 }
