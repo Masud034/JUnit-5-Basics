@@ -60,8 +60,20 @@ class CalculatorTest {
         assertAll(
                 () -> assertEquals(2.5, calculator.divide(5, 2)),
                 () -> assertEquals(4, calculator.divide(8, 2)),
-                () -> assertEquals(Double.POSITIVE_INFINITY, calculator.divide(8,0)),
-                () -> assertThrows(ArithmeticException.class, ()-> calculator.arithmeticExceptionCheck(5, 0))
+                () -> assertEquals(Double.POSITIVE_INFINITY, calculator.divide(8.5,0))
         );
+    }
+
+    @Test
+    @DisplayName("Should throw an ArithmeticExceptionError")
+    void arithmeticExceptionCheck(){
+        assertThrows(ArithmeticException.class, ()-> calculator.arithmeticExceptionCheck(5, 0));
+    }
+
+    @Test
+    @Disabled
+    @DisplayName("TDD method,should not run now")
+    void testDisabled(){
+        fail("This test should be disabled");
     }
 }
