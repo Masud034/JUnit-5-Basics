@@ -2,6 +2,7 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("When running CalculatorTest")
 class CalculatorTest {
 
     Calculator calculator;
@@ -27,47 +28,55 @@ class CalculatorTest {
         System.out.println("AfterAll runs after instance done serving its duty");
     }
 
-    @Test
-    @DisplayName("Should add two numbers")
-    void add() {
-        assertAll(
-                () -> assertEquals(4, calculator.add(2, 2)),
-                () -> assertEquals(8.5, calculator.add(5, 3.5)),
-                () -> assertEquals(205.73, calculator.add(200, 5.73)),
-                () -> assertEquals(8, calculator.add(4, 4))
-        );
+    @Nested
+    @DisplayName("Add method")
+    class Add {
+        @Test
+        @DisplayName("When adding two positive numbers")
+        void addPositive() {
+            assertAll(
+                    () -> assertEquals(4, calculator.add(2, 2),"should return the right sum"),
+                    () -> assertEquals(205.73, calculator.add(200, 5.73),"should return the right sum")
+            );
+        }
+        @Test
+        @DisplayName("When adding two negative numbers")
+        void addNegative() {
+            assertAll(
+                    () -> assertEquals(-2, calculator.add(-2, 0), "should return the right sum"),
+                    () -> assertEquals(-7, calculator.add(-2, -5),"should return the right sum")
+            );
+        }
     }
 
     @Test
-    @DisplayName("Should subtract two numbers")
+    @DisplayName("subtract method")
     void subtract() {
-        assertEquals(4, calculator.subtract(5.5, 1.5));
+        assertEquals(4, calculator.subtract(5.5, 1.5),"should return the right subtracted value");
     }
 
     @Test
-    @DisplayName("Should multiply two numbers")
+    @DisplayName("multiply method")
     void multiply() {
         assertAll(
-                () -> assertEquals(8, calculator.multiply(4, 2)),
-                () -> assertEquals(5, calculator.multiply(2.5, 2)),
-                () -> assertEquals(11, calculator.multiply(5.5, 2))
+                () -> assertEquals(8, calculator.multiply(4, 2),"should return the right multiplied value"),
+                () -> assertEquals(5, calculator.multiply(2.5, 2),"should return the right multiplied value")
         );
     }
 
     @Test
-    @DisplayName("Should divide two numbers")
+    @DisplayName("divide method")
     void divide() {
         assertAll(
-                () -> assertEquals(2.5, calculator.divide(5, 2)),
-                () -> assertEquals(4, calculator.divide(8, 2)),
-                () -> assertEquals(Double.POSITIVE_INFINITY, calculator.divide(8.5,0))
+                () -> assertEquals(2.5, calculator.divide(5, 2),"should return the right division value"),
+                () -> assertEquals(Double.POSITIVE_INFINITY, calculator.divide(8.5,0),"should return the right division value")
         );
     }
 
     @Test
-    @DisplayName("Should throw an ArithmeticExceptionError")
+    @DisplayName("arithmeticExceptionCheck method")
     void arithmeticExceptionCheck(){
-        assertThrows(ArithmeticException.class, ()-> calculator.arithmeticExceptionCheck(5, 0));
+        assertThrows(ArithmeticException.class, ()-> calculator.arithmeticExceptionCheck(5, 0),"should throw an ArithmeticExceptionError");
     }
 
     @Test
