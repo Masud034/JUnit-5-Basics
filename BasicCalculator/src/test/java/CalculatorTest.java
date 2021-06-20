@@ -35,16 +35,16 @@ class CalculatorTest {
         @DisplayName("When adding two positive numbers")
         void addPositive() {
             assertAll(
-                    () -> assertEquals(4, calculator.add(2, 2),"should return the right sum"),
-                    () -> assertEquals(205.73, calculator.add(200, 5.73),"should return the right sum")
+                    () -> assertEquals(4, calculator.add(2, 2),()-> "should return the right sum"),
+                    () -> assertEquals(205.73, calculator.add(200, 5.73),()-> "should return the right sum")
             );
         }
         @Test
         @DisplayName("When adding two negative numbers")
         void addNegative() {
             assertAll(
-                    () -> assertEquals(-2, calculator.add(-2, 0), "should return the right sum"),
-                    () -> assertEquals(-7, calculator.add(-2, -5),"should return the right sum")
+                    () -> assertEquals(-2, calculator.add(-2, 0), ()-> "should return the right sum"),
+                    () -> assertEquals(-7, calculator.add(-2, -5),()-> "should return the right sum")
             );
         }
     }
@@ -52,15 +52,15 @@ class CalculatorTest {
     @Test
     @DisplayName("subtract method")
     void subtract() {
-        assertEquals(4, calculator.subtract(5.5, 1.5),"should return the right subtracted value");
+        assertEquals(4, calculator.subtract(5.5, 1.5),()-> "should return the right subtracted value");
     }
 
     @Test
     @DisplayName("multiply method")
     void multiply() {
         assertAll(
-                () -> assertEquals(8, calculator.multiply(4, 2),"should return the right multiplied value"),
-                () -> assertEquals(5, calculator.multiply(2.5, 2),"should return the right multiplied value")
+                () -> assertEquals(8, calculator.multiply(4, 2),()-> "should return the right multiplied value"),
+                () -> assertEquals(5, calculator.multiply(2.5, 2),()-> "should return the right multiplied value")
         );
     }
 
@@ -68,15 +68,15 @@ class CalculatorTest {
     @DisplayName("divide method")
     void divide() {
         assertAll(
-                () -> assertEquals(2.5, calculator.divide(5, 2),"should return the right division value"),
-                () -> assertEquals(Double.POSITIVE_INFINITY, calculator.divide(8.5,0),"should return the right division value")
+                () -> assertEquals(2.5, calculator.divide(5, 2),()-> "should return the right division value"),
+                () -> assertEquals(Double.POSITIVE_INFINITY, calculator.divide(8.5,0),()-> "should return the right division value")
         );
     }
 
     @Test
     @DisplayName("arithmeticExceptionCheck method")
     void arithmeticExceptionCheck(){
-        assertThrows(ArithmeticException.class, ()-> calculator.arithmeticExceptionCheck(5, 0),"should throw an ArithmeticExceptionError");
+        assertThrows(ArithmeticException.class, ()-> calculator.arithmeticExceptionCheck(5, 0),()-> "should throw an ArithmeticExceptionError");
     }
 
     @Test
