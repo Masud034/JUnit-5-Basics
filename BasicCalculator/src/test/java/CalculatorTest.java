@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculatorTest {
 
     Calculator calculator;
+    TestInfo testInfo;
+    TestReporter testReporter;
 
     @BeforeAll
     static void beforeAll() {
@@ -14,6 +16,9 @@ class CalculatorTest {
 
     @BeforeEach
     void init(TestInfo testInfo, TestReporter testReporter) {
+        this.testInfo = testInfo;
+        this.testReporter = testReporter;
+
         testReporter.publishEntry("Running " + testInfo.getDisplayName());
         calculator = new Calculator();
         System.out.println("Instance created");
@@ -67,8 +72,10 @@ class CalculatorTest {
     }
 
     @Test
+    @Tag("Arithmetic")
     @DisplayName("divide method")
     void divide() {
+        testReporter.publishEntry("Running " + testInfo.getDisplayName() + " for " + testInfo.getTags());
         assertAll(
                 () -> assertEquals(2.5, calculator.divide(5, 2), () -> "should return the right division value"),
                 () -> assertEquals(Double.POSITIVE_INFINITY, calculator.divide(8.5, 0), () -> "should return the right division value")
