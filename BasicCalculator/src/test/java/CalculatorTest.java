@@ -13,7 +13,8 @@ class CalculatorTest {
     }
 
     @BeforeEach
-    void init() {
+    void init(TestInfo testInfo, TestReporter testReporter) {
+        testReporter.publishEntry("Running " + testInfo.getDisplayName());
         calculator = new Calculator();
         System.out.println("Instance created");
     }
@@ -82,6 +83,9 @@ class CalculatorTest {
         //System.out.println(repetitionInfo.getCurrentRepetition());
         assertThrows(ArithmeticException.class, () -> calculator.arithmeticExceptionCheck(5, 0), () -> "should throw an ArithmeticExceptionError");
     }
+
+    //TestInfo contains information about test
+    //TestReport lets you access the console,report
 
     @Test
     @Disabled
